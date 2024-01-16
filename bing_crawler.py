@@ -55,6 +55,9 @@ def getData(targethtml):
         data.append(item_data)
     return data
 
+def saveImg(url, filename):
+    urllib.request.urlretrieve(url, filename)
+
 
 """
 if __name__ == "__main__":

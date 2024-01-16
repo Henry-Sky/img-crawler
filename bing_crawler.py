@@ -44,7 +44,10 @@ def getData(targethtml):
         # 预览图片链接
         img_src = re.findall(findMurl, item)
         img = [x for x in img_src if x != '']
-        item_data["img"] = img[0]
+        if img != []:
+            item_data["img"] = img[0]
+        else:
+            item_data["img"] = ""
 
         # 外部链接
         lnkw = re.findall(findLnkw, item)[0]
@@ -56,7 +59,10 @@ def getData(targethtml):
     return data
 
 def saveImg(url, filename):
-    urllib.request.urlretrieve(url, filename)
+    try:
+        urllib.request.urlretrieve(url, filename)
+    except urllib.error as e:
+        print(e.reason)
 
 
 """
